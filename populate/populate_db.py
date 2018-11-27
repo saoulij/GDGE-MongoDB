@@ -4,8 +4,29 @@
 Script to populate db
 """
 
-from pymongo import MongoClient
+from pymongo import MongoClient, ASCENDING, DESCENDING, TEXT
 import customers, products, sellingads, purchases, reviews
+
+
+def create_indexes(db):
+    db.products.create_index([
+        ('product_type', TEXT),
+        ('type', TEXT)
+    ])
+
+    db.sellingads.create_index([('date', DESCENDING)])
+    db.sellingads.create_index([('seller_id', ASCENDING)])
+
+    db.purchases.create_index([
+        ('payment.date', DESCENDING),
+        ('buyer_id', ASCENDING)
+    ])
+
+    db.reviews.create_index([
+        ('date', DESCENDING),
+        ('seller_id', ASCENDING)
+    ])
+
 
 def main():
     client = MongoClient('localhost', 27021)
@@ -20,6 +41,8 @@ def main():
         db, sellingads_res.inserted_ids, customers_res.inserted_ids)
     reviews.generate(
         db, purchases_res.inserted_ids, customers_res.inserted_ids)
+
+    create_indexes(db)
 
     client.close()
 

@@ -1,6 +1,9 @@
-## Top vendeur avec la meilleure note moyenne issue des critiques
+## Top vendeur avec la meilleure note moyenne issue des critiques avant le 1er novembre 2018
 
 db.reviews.aggregate(
+{ $match:
+	{ "date": { $lt: ISODate("2018-11-01T00:00:00.000Z") } },
+},
 { $group: {
 	_id: "$seller_id",
 	"meanScore": { $avg: "$grade" },

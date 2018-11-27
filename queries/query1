@@ -1,7 +1,7 @@
-## Type de produit le plus vendus
+## Type de produit le plus vendus sur depuis le début de l'année 2018
 
 var soldAds_ids = db.purchases.find(
-	{ },
+	{ "payment.date": { $gte: ISODate("2018-01-01T00:00:00.000Z") } },
 	{ sellingad_id: 1 }
 ).map( function( item ) {
 	return item.sellingad_id
@@ -9,18 +9,20 @@ var soldAds_ids = db.purchases.find(
 )
 
 var products_ids = db.sellingads.aggregate(
-	{ $match:
-		{ _id: {$in: soldAds_ids } }
+	{ $match: {
+		_id: { $in: soldAds_ids }
+		}
 	},
 	{ $unwind: "$products" }
 ).map( function( item ) {
 	return item.products
-} 
+}
 )
 
 db.products.aggregate(
-{ $match:
-	{ _id: { $in: products_ids } }
+{ $match: {
+	_id: { $in: products_ids }
+	}
 },
 { $group: {
 	_id: "$product_type",
@@ -29,7 +31,7 @@ db.products.aggregate(
 },
 { $project: {
 	_id: 0,
-	"type": "$_id", 
+	"type": "$_id",
 	"total": 1
 	}
 },
