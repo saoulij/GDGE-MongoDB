@@ -11,8 +11,9 @@ var wanted_ids = db.customers.aggregate(
 	"count": { $sum: 1 }
 	}
 },
-{ $sort: 
-	{ "count": -1 }
+{ $sort: {
+	"count": -1
+	}
 },
 { $limit: 100 }
 ).map( function(e) {
@@ -21,8 +22,9 @@ var wanted_ids = db.customers.aggregate(
 )
 
 db.products.aggregate(
-{ $match:
-	{ _id: { $in: wanted_ids } }
+{ $match: {
+	_id: { $in: wanted_ids }
+	}
 },
 { $group: {
 	_id: { type: "$type", product_type: "$product_type" },

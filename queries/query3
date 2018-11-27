@@ -10,20 +10,23 @@ var aCustomer = db.customers.findOne(
 )
 
 db.customers.aggregate(
-{ $match:
-	{ "followed_products": { $elemMatch: { $in: aCustomer.followed_products } } }
+{ $match: {
+	"followed_products": { $elemMatch: { $in: aCustomer.followed_products } }
+	}
 },
 { $unwind: "$followed_products" },
-{ $match:
-	{ "followed_products": { $nin: aCustomer.followed_products } }
+{ $match: {
+	"followed_products": { $nin: aCustomer.followed_products }
+	}
 },
 { $group: {
 	_id: "$followed_products",
 	"popularity": { $sum: 1 }
 	}
 },
-{ $sort:
-	{ "popularity": -1 }
+{ $sort: {
+	"popularity": -1
+	}
 },
 { $lookup: {
 	from: "products",
@@ -34,4 +37,3 @@ db.customers.aggregate(
 },
 { $limit: 10 }
 )
-

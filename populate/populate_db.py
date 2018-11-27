@@ -22,10 +22,7 @@ def create_indexes(db):
         ('buyer_id', ASCENDING)
     ])
 
-    db.reviews.create_index([
-        ('date', DESCENDING),
-        ('seller_id', ASCENDING)
-    ])
+    db.reviews.create_index([('date'), DESCENDING])
 
 
 def main():

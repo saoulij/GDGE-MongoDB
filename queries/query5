@@ -32,7 +32,8 @@ db.purchases.aggregate(
 	"total(€)": { $trunc: "$total" }
 	}
 },
-{ $sort:
-	{ "month": 1 }
+{ $sort: {
+	"month": 1
+	}
 }
 )

@@ -35,7 +35,8 @@ db.products.aggregate(
 	"total": 1
 	}
 },
-{ $sort:
-	{ "type": 1 }
+{ $sort: {
+	"type": 1
+	}
 }
 )
