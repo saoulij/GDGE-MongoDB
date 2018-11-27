@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 """
-script de peuplement
+Script to populate db
 """
 
 from pymongo import MongoClient
-import customers, products, sellingads, purchases
+import customers, products, sellingads, purchases, reviews
 
 def main():
     client = MongoClient('localhost', 27021)
@@ -16,8 +16,10 @@ def main():
     customers_res = customers.generate(db, products_res.inserted_ids)
     sellingads_res = sellingads.generate(
         db, products_res.inserted_ids, customers_res.inserted_ids)
-    purchases.generate(
+    purchases_res = purchases.generate(
         db, sellingads_res.inserted_ids, customers_res.inserted_ids)
+    reviews.generate(
+        db, purchases_res.inserted_ids, customers_res.inserted_ids)
 
     client.close()
 

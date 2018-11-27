@@ -42,15 +42,7 @@ def generate(db, sellingads_ids, customers_ids):
             "sellingad_id": sellingad_id,
             "delivery": delivery,
             "payment": payment,
-
         }
-        if random() > 0.5:
-            review = {
-                "grade": random() * 5,
-                "comment": generate_lorem(randint(2, 10)),
-                "date": generate_date(payment_date),
-            }
-            purchase["review"] = review
         purchases_list.append(purchase)
 
     return purchases.insert_many(purchases_list)

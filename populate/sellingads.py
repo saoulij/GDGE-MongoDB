@@ -2,6 +2,7 @@
 Generate 'sellingads' collection
 """
 
+import os
 from random import random, randint
 from datetime import datetime
 from customers import CITY, rand_number
@@ -13,7 +14,8 @@ NB_SELLINGADS = 300
 LOREM = []
 
 def init_lorem():
-    with open('loremipsum.txt', 'r') as f:
+    fn = os.path.join(os.path.dirname(__file__), 'loremipsum.txt')
+    with open(fn, 'r') as f:
         for word in f.read().split():
             LOREM.append(word)
 
