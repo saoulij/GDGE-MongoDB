@@ -1,0 +1,43 @@
+## Quelle catégorie de produit est le plus demandée parmi les 100 produits les plus demandés par les clients ayant au moins une adresse en région parisienne ?
+
+var wanted_ids = db.customers.aggregate(
+{ $match: {
+	"addresses.zipcode": { $regex: '(7(5|7|8))|(9(1|2|3|4|5))(\d){3}' }
+	}
+},
+{ $unwind: "$followed_products" },
+{ $group: {
+	_id: "$followed_products",
+	"count": { $sum: 1 }
+	}
+},
+{ $sort: 
+	{ "count": -1 }
+},
+{ $limit: 100 }
+).map( function(e) {
+	return e._id
+}
+)
+
+db.products.aggregate(
+{ $match:
+	{ _id: { $in: wanted_ids } }
+},
+{ $group: {
+	_id: { type: "$type", product_type: "$product_type" },
+	"count": { $sum: 1 }
+	}
+},
+{ $sort: {
+	"count": -1,
+	"product_type": 1,
+	"type": 1
+	}
+},
+{ $project: {
+	_id: 0,
+	"category": "$_id.product_type",
+	"product": "$_id.type"
+	}
+})

@@ -1,0 +1,39 @@
+## Type de produit le plus vendus
+
+var soldAds_ids = db.purchases.find(
+	{ },
+	{ sellingad_id: 1 }
+).map( function( item ) {
+	return item.sellingad_id
+}
+)
+
+var products_ids = db.sellingads.aggregate(
+	{ $match:
+		{ _id: {$in: soldAds_ids } }
+	},
+	{ $unwind: "$products" }
+).map( function( item ) {
+	return item.products
+} 
+)
+
+db.products.aggregate(
+{ $match:
+	{ _id: { $in: products_ids } }
+},
+{ $group: {
+	_id: "$product_type",
+	"total": { $sum: 1 }
+	}
+},
+{ $project: {
+	_id: 0,
+	"type": "$_id", 
+	"total": 1
+	}
+},
+{ $sort:
+	{ "type": 1 }
+}
+)

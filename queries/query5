@@ -1,0 +1,38 @@
+## Nombre et coût total des ventes de l'année 2018 triés par mois
+
+db.purchases.aggregate(
+{ $project: {
+	"sellingad_id": 1,
+	"payment_month": { $month: "$payment.date" },
+	"payment_year": { $year: "$payment.date" },
+	}
+},
+{ $match: {
+	"payment_year": { $eq: 2018 }
+	}
+},
+{ $lookup: {
+	from: "sellingads",
+	localField: "sellingad_id",
+	foreignField: "_id",
+	as: "ad"
+	}
+},
+{ $unwind: "$ad" },
+{ $group: {
+	_id: "$payment_month",
+	"sold": { $sum: 1 },
+	"total": { $sum: "$ad.price"}
+	}
+},
+{ $project: {
+	_id: 0,
+	"month": "$_id",
+	"sold": 1,
+	"total(€)": { $trunc: "$total" }
+	}
+},
+{ $sort:
+	{ "month": 1 }
+}
+)
