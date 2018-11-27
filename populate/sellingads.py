@@ -35,6 +35,13 @@ def generate(db, products_ids, customers_ids):
     sellingads_list = []
     for _ in range(NB_SELLINGADS):
         seller_id = customers_ids[randint(1, len(customers_ids)-1)]
+        seller_data = db.customers.find_one({"_id": seller_id})
+        seller = {
+            "_id": seller_id,
+            "name": seller_data["name"],
+            "email": seller_data["email"],
+            "phone": seller_data["phone"],
+        }
         title = generate_lorem(randint(1, 8))
         description = generate_lorem(randint(5, 50))
         products = []
@@ -47,7 +54,7 @@ def generate(db, products_ids, customers_ids):
         price = random() * 1000
         date = generate_date(datetime(2018, 1, 1))
         sellingad = {
-            "seller_id": seller_id,
+            "seller": seller,
             "title": title,
             "description": description,
             "products": products,

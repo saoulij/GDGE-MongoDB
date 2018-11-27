@@ -20,7 +20,7 @@ def generate(db, purchases_ids, customers_ids):
         purchase = db.purchases.find_one({"_id": purchase_id})
         sellingad_id = purchase["sellingad_id"]
         payment_date = purchase["payment"]["date"]
-        seller_id = db.sellingads.find_one({"_id": sellingad_id})["seller_id"]
+        seller_id = db.sellingads.find_one({"_id": sellingad_id})["seller"]["_id"]
         review = {
             "purchase_id": purchase_id,
             "seller_id": seller_id,
