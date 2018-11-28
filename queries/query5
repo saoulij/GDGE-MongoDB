@@ -1,14 +1,8 @@
 ## Nombre et coût total des ventes de l'année 2018 triés par mois
 
 db.purchases.aggregate(
-{ $project: {
-	"sellingad_id": 1,
-	"payment_month": { $month: "$payment.date" },
-	"payment_year": { $year: "$payment.date" },
-	}
-},
 { $match: {
-	"payment_year": { $eq: 2018 }
+	"payment.date": { $gte: ISODate("2018-01-01T00:00:00.000Z") }
 	}
 },
 { $lookup: {
@@ -20,7 +14,7 @@ db.purchases.aggregate(
 },
 { $unwind: "$ad" },
 { $group: {
-	_id: "$payment_month",
+	_id: { $month: "$payment.date" },
 	"sold": { $sum: 1 },
 	"total": { $sum: "$ad.price"}
 	}

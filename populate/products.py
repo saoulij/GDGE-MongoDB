@@ -7,7 +7,7 @@ from datetime import datetime
 from customers import generate_name
 
 
-NB_PRODUCTS_BY_TYPE = 100
+NB_PRODUCTS_BY_TYPE = 200
 
 CLOTHES = ["Pantalon", "Costume", "T-shirt", "Chaussure", "Robe", "Jupe",
            "Chemise", "Pull", "Sweat"]

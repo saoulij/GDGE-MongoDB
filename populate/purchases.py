@@ -10,7 +10,7 @@ from products import generate_date
 from sellingads import generate_lorem
 
 
-NB_PURCHASES = 200
+NB_PURCHASES = 700
 
 METHOD = ["Colis", "Colissimo", "Recommande", "Courier suivi", "DHL", "Relais",
           "SAL", "Airmail", "Air parcel", "Small parcel", "Chronopost", "EMS",

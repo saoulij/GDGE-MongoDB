@@ -1,4 +1,4 @@
-## Quelle catégorie de produit est le plus demandée parmi les 100 produits les plus demandés par les clients ayant au moins une adresse en région parisienne ?
+## Catégorie de produit la plus demandée parmi les 100 produits les plus demandés par les clients ayant une adresse en région parisienne
 
 var wanted_ids = db.customers.aggregate(
 { $match: {

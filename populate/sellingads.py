@@ -9,7 +9,7 @@ from customers import CITY, rand_number
 from products import generate_date
 
 
-NB_SELLINGADS = 300
+NB_SELLINGADS = 1000
 
 LOREM = []
 

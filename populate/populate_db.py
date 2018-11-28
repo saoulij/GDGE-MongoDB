@@ -11,7 +11,7 @@ import customers, products, sellingads, purchases, reviews
 def create_indexes(db):
     db.products.create_index([
         ('product_type', TEXT),
-        ('type', TEXT)
+        ('type', TEXT),
     ])
 
     db.sellingads.create_index([('date', DESCENDING)])
@@ -19,10 +19,10 @@ def create_indexes(db):
 
     db.purchases.create_index([
         ('payment.date', DESCENDING),
-        ('buyer_id', ASCENDING)
+        ('buyer_id', ASCENDING),
     ])
 
-    db.reviews.create_index([('date'), DESCENDING])
+    db.reviews.create_index([('date', DESCENDING)])
 
 
 def main():

@@ -5,7 +5,7 @@ Generate 'customers' collection
 from random import random, randint, sample
 
 
-NB_CUSTOMERS = 500
+NB_CUSTOMERS = 800
 
 FIRSTNAME = ["Jean", "Pierre", "Michel", "Andre", "Philippe", "Andre", "Louis",
              "Alain", "Jacques", "Paul", "Claude", "Patrick", "Christophe",
@@ -54,7 +54,7 @@ STREET_2 = ["de l'eau", "du puit", "de l'etang", "du jardin", "du bois",
             "des gros pois", "des haricots", "des bananes", "des ananas",
             "Charles de Gaulle", "Louis Pasteur", "Jean Jaures", "Victor Hugo",
             "General Leclec", "Jules Ferry", "Jean Moulin", "Marechal Foch",
-            "des ecoles", "du chateau", "de la fontaine", "du stade"
+            "des ecoles", "du chateau", "de la fontaine", "du stade",
             "principale", "grande", "petite", "huit-mai", "dix-neuf-mars",
             "quatre-septembre", "onze-novembre", "quatorze-juillet"]
 CITY = ["Paris", "Lyon", "Grenoble", "Montpellier", "Brest", "Rennes", "Caen",

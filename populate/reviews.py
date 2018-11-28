@@ -3,7 +3,6 @@ Generate 'reviews' collection
 """
 
 from random import random, randint
-from datetime import datetime
 
 from products import generate_date
 from sellingads import generate_lorem
