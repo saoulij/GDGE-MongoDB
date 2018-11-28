@@ -1,5 +1,3 @@
-## Catégorie de produit la plus demandée parmi les 100 produits les plus demandés par les clients ayant une adresse en région parisienne
-
 var wanted_ids = db.customers.aggregate(
 { $match: {
 	"addresses.zipcode": { $regex: '(7(5|7|8))|(9(1|2|3|4|5))(\d){3}' }
@@ -39,6 +37,7 @@ db.products.aggregate(
 },
 { $project: {
 	_id: 0,
+	"count": 1,
 	"category": "$_id.product_type",
 	"product": "$_id.type"
 	}

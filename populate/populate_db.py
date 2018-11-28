@@ -12,7 +12,7 @@ def create_indexes(db):
     db.products.create_index([
         ('product_type', TEXT),
         ('type', TEXT),
-    ])
+    ], default_language='french')
 
     db.sellingads.create_index([('date', DESCENDING)])
     db.sellingads.create_index([('seller_id', ASCENDING)])

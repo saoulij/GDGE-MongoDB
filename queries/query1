@@ -1,5 +1,3 @@
-## Type de produit le plus vendus sur depuis le début de l'année 2018
-
 var soldAds_ids = db.purchases.find(
 	{ "payment.date": { $gte: ISODate("2018-01-01T00:00:00.000Z") } },
 	{ sellingad_id: 1 }

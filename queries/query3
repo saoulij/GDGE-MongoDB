@@ -1,5 +1,3 @@
-## Sélectionne un client A ayant une liste de produits suivis de taille > 1 puis génère une liste de produits qui intéressent d'autres clients aussi intéressés par les mêmes produits que A
-
 var aCustomer = db.customers.findOne(
 { $nor: [
 	{ "followed_products": { $exists: false } },
