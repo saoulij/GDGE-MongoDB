@@ -8,7 +8,9 @@ mongod --shardsvr --dbpath dbmongo --port 27021 &
 ```
 
 ### Peupler la base de donnée et créer les indexes
-Lancer le script `populate_db.py`.
+Lancer le script `populate_db.py` du répertoire `populate/`.
+
+La librairie PyMongo est nécessaire et peut être installée via la commande `pip install pymongo --user`.
 
 ### Connexion à la base de donnée depuis le terminal
 ```
