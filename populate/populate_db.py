@@ -28,7 +28,6 @@ def create_indexes(db):
 def main():
     client = MongoClient('localhost', 27021)
     db = client.dbmongo
-    print(db)
 
     products_res = products.generate(db)
     customers_res = customers.generate(db, products_res.inserted_ids)

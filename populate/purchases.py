@@ -32,7 +32,7 @@ def generate(db, sellingads_ids, customers_ids):
             "address": generate_address(),
             "fees": random() * 100,
         }
-        payment_date = generate_date(datetime(2018, 1, 1))
+        payment_date = generate_date(datetime(2017, 9, 1))
         payment = {
             "method": PAY[randint(1, len(PAY)-1)],
             "date": payment_date

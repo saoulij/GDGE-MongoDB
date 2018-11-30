@@ -52,7 +52,7 @@ def generate(db, products_ids, customers_ids):
             "zipcode": rand_number(5)
         }
         price = random() * 1000
-        date = generate_date(datetime(2018, 1, 1))
+        date = generate_date(datetime(2017, 9, 1))
         sellingad = {
             "seller": seller,
             "title": title,
